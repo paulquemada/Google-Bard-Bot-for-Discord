@@ -1,0 +1,27 @@
+# Import necessary libraries
+import discord
+from discord.ext import commands
+
+# Initialize bot and set prefix
+bot = commands.Bot(command_prefix='!')
+
+# Choose your AI: replace "chatgpt" or "bard" as needed
+ai_model = "chatgpt"  # or "bard"
+
+# Define a function to interact with the chosen AI
+async def ai_response(message, prompt):
+    if ai_model == "chatgpt":
+        # ChatGPT API call here
+        response = chatgpt_api.generate_text(prompt)
+    elif ai_model == "bard":
+        # Bard API call here
+        response = bard.query(prompt)
+    await message.channel.send(response)
+
+# Command to trigger AI interaction
+@bot.command()
+async def ai(message, *, prompt):
+    await ai_response(message, prompt)
+
+# Run the bot
+bot.run("YOUR_BOT_TOKEN")
